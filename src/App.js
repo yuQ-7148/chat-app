@@ -1,56 +1,13 @@
 import './App.css';
 import React from 'react';
-import { createStore } from 'redux';
-
-const uuid = require('uuid')
-
-const initialState = {                                          //initialState
-  activeThreadId: '1-fca2',
-  threads: [
-    {
-      id: '1-fca2',
-      title: 'Buzz Aldrin',
-      messages: [
-        {
-          text: 'Twelve minutes to ignition.',
-          timestamp: Date.now(),
-          id: uuid.v4()
-        }
-      ]
-    },
-    {
-      id: '2-be91',
-      title: 'Michael Collins',
-      message: []
-    }
-  ]
-}
-
-function reducer(state = initialState, action) {                                 //reducer
-  if (action.type === 'ADD_MESSAGE') {                                    //ADD_MESSAGE
-    const newMessage = {
-      text: action.text,
-      timestamp: Date.now(),
-      id: uuid.v4()
-    }
-    return {
-      messages: state.messages.concat(newMessage)
-    }
-  } else if(action.type === 'DELETE_MESSAGE') {                           //DELETE_MESSAGE
-    return {
-      messages: state.messages.filter((m) => (m.id !== action.id))
-    }
-  }
-}
-
-const store = createStore(reducer, initialState)                  //store
+import store from './redux/store';
+import { Provider } from 'react-redux';
+import { ADD_MESSAGE, DELETE_MESSAGE } from './redux/action';
+import MainRouter from './router/router';
 
 class Thread extends React.Component {                            //Thread
   handleClick = (id) => {                                                 //handleClick
-    store.dispatch({
-      type: 'DELETE_MESSAGE',
-      id: id
-    })
+    store.dispatch(DELETE_MESSAGE(id))                                    //DELETE_MESSAGE
   }
 
   render() {
@@ -63,7 +20,7 @@ class Thread extends React.Component {                            //Thread
       </div>
     ))
 
-    return(
+    return (
       <div>
         <div>
           {messages}
@@ -86,15 +43,12 @@ class MessageInput extends React.Component {                     //MessageInput
   }
 
   handleSubmit = () => {                                                  //handleSubmit
-    store.dispatch({
-      type: 'ADD_MESSAGE',
-      text: this.state.value
-    })
-    this.setState({value: ''})
+    store.dispatch(ADD_MESSAGE(this.state.value))                         //ADD_MESSAGE
+    this.setState({ value: '' })
   }
 
   render() {
-    return(
+    return (
       <div>
         <input onChange={this.onChange} value={this.state.value} type='text' />
         <button onClick={this.handleSubmit} type='submit' >
@@ -119,9 +73,10 @@ class App extends React.Component {                                //App
     const activeThread = threads.find((t) => t.id === activeThreadId)
 
     return (
-      <div>
+      <Provider store={store}>
+        <MainRouter />
         <Thread thread={activeThread} />
-      </div>
+      </Provider>
     )
   }
 
