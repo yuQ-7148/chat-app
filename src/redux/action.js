@@ -1,10 +1,10 @@
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
-export const addMessage = (value) => ({                  //ADD_MESSAGE
+export const addMessage = (value, threadId) => ({                  //ADD_MESSAGE
     type: ADD_MESSAGE,
     text: value,
-    threadId: '1-fca2'
+    threadId: threadId
 })
 
 export const deleteMessage = (id) => ({                  //DELETE_MESSAGE

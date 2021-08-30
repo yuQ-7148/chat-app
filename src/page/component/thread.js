@@ -23,7 +23,7 @@ class Thread extends React.Component {                            //Thread
           <div>
             {messages}
           </div>
-          <MessageInput />
+          <MessageInput threadId={this.props.thread.id} />
         </div>
       )
     }
