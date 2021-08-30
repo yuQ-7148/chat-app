@@ -4,12 +4,12 @@ import { reducer } from "./reducer";
 const uuid = require('uuid');
 
 export const initialState = {                                          //initialState
-    activeThreadId: '1-fca2',
-    threads: [
+    activeThreadId: '1-fca2',                                                                      //activeThreadId
+    threads: [                                                                                     //threads
       {
-        id: '1-fca2',
-        title: 'Buzz Aldrin',
-        messages: [
+        id: '1-fca2',                                                                                        //id
+        title: 'Buzz Aldrin',                                                                                //title
+        messages: [                                                                                          //message                
           {
             text: 'Twelve minutes to ignition.',
             timestamp: Date.now(),
