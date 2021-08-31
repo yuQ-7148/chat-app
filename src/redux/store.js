@@ -20,7 +20,13 @@ export const initialState = {                                          //initial
       {
         id: '2-be91',
         title: 'Michael Collins',
-        message: []
+        messages: [
+          {
+            text: 'You\'re going right down U.S. 1,Mike',
+            timestamp: Date.now(),
+            id: uuid.v4()
+          }
+        ]
       }
     ]
   }
