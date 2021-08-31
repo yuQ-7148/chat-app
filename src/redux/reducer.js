@@ -32,17 +32,14 @@ export function reducer(state, action) {                                 //reduc
                     m.id === action.id
                 ))
             );
-            console.log('threadIndex1', threadIndex1);                                                              //测试threadIndex1
 
             const oldThread1 = state.threads[threadIndex1];
-            console.log('oldThread1', oldThread1);                                                                  //测试oldThread1
             const newThread1 = {
                 ...oldThread1,
                 messages: oldThread1.messages.filter((m) => (
                     m.id !== action.id
                 ))
             }
-            console.log('newThread1', newThread1);                                                 //测试newThread1
 
             return {
                 ...state,
