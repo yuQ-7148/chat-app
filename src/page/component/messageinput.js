@@ -15,6 +15,7 @@ class MessageInput extends React.Component {                     //MessageInput
 
   handleSubmit = () => {                                                  //handleSubmit
     store.dispatch(addMessage(this.state.value, this.props.threadId))                         //ADD_MESSAGE
+    
     this.setState({ value: '' })
   }
 
