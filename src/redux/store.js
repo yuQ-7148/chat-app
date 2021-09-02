@@ -1,4 +1,6 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import { reducer } from "./reducer";
 
 const uuid = require('uuid');
@@ -30,7 +32,7 @@ export const initialState = {                                          //initial
       }
     ]
   }
-
-const store = createStore(reducer, initialState);                     //store
+  
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));                     //store
 
 export default store;

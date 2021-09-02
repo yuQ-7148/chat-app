@@ -14,8 +14,6 @@ class HomePage extends React.Component {
         const threads = state.threads
         const activeThread = threads.find((t) => t.id === activeThreadId)
 
-        console.log('测试activeThread', activeThread)                                                                          //测试activeThread
-
         const tabs = threads.map(t => ({
             title: t.title,
             id: t.id
