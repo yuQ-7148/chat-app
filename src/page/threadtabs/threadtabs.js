@@ -1,18 +1,7 @@
 import React from "react";
 import { openthread } from "../../redux/action";
 import store from "../../redux/store";
-
-const Tabs = (props) => (
-    <div>
-        {
-            props.tabs.map((tab, index) => (
-                <div key={index} onClick={() => props.onClick(tab.id)} >
-                    {tab.title}
-                </div>
-            ))
-        }
-    </div>
-)
+import { Tabs } from "./component/tabs";
 
 class ThreadTabs extends React.Component {
     componentDidMount() {
