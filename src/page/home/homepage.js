@@ -14,14 +14,9 @@ class HomePage extends React.Component {
         const threads = state.threads
         const activeThread = threads.find((t) => t.id === activeThreadId)
 
-        const tabs = threads.map(t => ({
-            title: t.title,
-            id: t.id
-        }))
-
         return (
             <div>
-                <ThreadTabs tabs={tabs} />
+                <ThreadTabs/>
                 <Thread thread={activeThread} />
             </div>
         )
