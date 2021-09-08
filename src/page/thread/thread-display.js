@@ -1,32 +1,13 @@
-import React from "react";
-import { addMessage, deleteMessage } from "../../redux/action";
-import store from "../../redux/store";
+import { mapDispatchToThreadProps } from "./component/mapdispatch-to-threadprops";
+import { mapStateToThreadProps } from "./component/mapstate-to-threadprops";
+import { mergeThreadProps } from "./component/merge-threadprops";
 import { Thread } from "./component/thread";
+import { connect } from "react-redux";
 
-class ThreadDisplay extends React.Component {                            //Thread
-    componentDidMount() {
-      store.subscribe(() => this.forceUpdate())
-    }
-  
-    render() {
-      const state = store.getState()
-      const activeThreadId = state.activeThreadId
-      const activeThread = state.threads.find(
-        t => t.id === activeThreadId
-      )
-  
-      return (
-        <Thread 
-          thread={activeThread}
-          onMessageClick={(id) => (
-            store.dispatch(deleteMessage(id))
-          )}
-          onMessageSubmit={(text) => (
-            store.dispatch(addMessage(text, activeThreadId))
-          )}
-        />
-      )
-    }
-  }
+const ThreadDisplay = connect(
+  mapStateToThreadProps,
+  mapDispatchToThreadProps,
+  mergeThreadProps
+)(Thread)
 
-  export default ThreadDisplay;
+export default ThreadDisplay;

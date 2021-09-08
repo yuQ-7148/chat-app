@@ -6,7 +6,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <div>
-                <ThreadTabs/>
+                <ThreadTabs />
                 <ThreadDisplay />
             </div>
         )
